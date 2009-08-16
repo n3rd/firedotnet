@@ -1,0 +1,7 @@
+#summary Disable firedotnet for your application
+#labels Phase-Deploy
+
+= Details =
+
+To disable firedotnet add the following line to the appSettings section in your web.config:
+`<add key="FireDotNet" value="disabled"/>`
