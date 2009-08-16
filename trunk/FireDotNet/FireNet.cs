@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Data;
+using System.Text;
 
 namespace FireDotNet
 {
@@ -52,7 +53,7 @@ namespace FireDotNet
             for (int i = 1; i <= _LogEntries.Count; i++)
             {
                 string json = JavaScriptConvert.SerializeObject(_LogEntries[i - 1]);
-                HttpContext.Current.Response.AddHeader("X-Wf-1-1-1-" + i, String.Format("{0}|{1}|", json.Length, json));
+                HttpContext.Current.Response.AddHeader("X-Wf-1-1-1-" + i, String.Format("{0}|{1}|", Encoding.UTF8.GetByteCount(json), json));
             }
         }
 
