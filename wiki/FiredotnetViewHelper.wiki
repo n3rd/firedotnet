@@ -1,0 +1,22 @@
+#summary Using Firedotnet as a view helper
+#labels Phase-Deploy
+
+= Introduction =
+
+Debugging your view is easy, and can easily mes up your layout. 
+Using Firedotnet to debug your views can help because it does not affect your layout and HTML, on top of that, all debug messages can be disabled by adding one line to your web.config
+
+
+= Details =
+
+To use Firedotnet in your views, add one attribute to your controller:
+
+{{{
+using Castle.MonoRail.Framework;
+
+[Helper(typeof(FireNet))]
+public class MyController : Controller
+{
+    public void MyAction() { }
+}
+}}}
