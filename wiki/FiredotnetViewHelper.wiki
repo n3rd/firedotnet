@@ -1,5 +1,7 @@
 #summary Using Firedotnet as a view helper
-#labels Phase-Deploy
+#labels Deprecated
+
+*This page only applies for firedotnet v0.1.1 and lower*
 
 = Introduction =
 
