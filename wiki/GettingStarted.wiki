@@ -16,15 +16,15 @@ To be able to debug to the Firebug console you have to make a few small adjustme
 {{{
 <extensions>
   <add assembly="NLog.Targets.FireDotNet"/>
-</extensions> 
+</extensions>
 }}}
   # you should add a target of the type FireDotNet:
 {{{
-<target name="a1" type="FireDotNet" />
+<target name="firebugconsole" type="FireDotNet" />
 }}}
   # and add a logger that writes to the target e.g.
 {{{
-<logger name="*" minLevel="Trace" appendTo="a1"/>
+<logger name="*" minLevel="DEBUG" appendTo="firebugconsole"/>
 }}}
 
 your complete configuration file might look like this:
