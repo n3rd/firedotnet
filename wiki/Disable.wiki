@@ -1,5 +1,7 @@
 #summary Disable firedotnet for your application
-#labels Phase-Deploy
+#labels Deprecated
+
+*This page only applies for firedotnet v0.1.1 and lower*
 
 = Details =
 
