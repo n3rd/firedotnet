@@ -1,0 +1,43 @@
+#summary Getting started with the NLog target FireDotNet
+#labels Featured,Phase-Implementation,Phase-Deploy
+
+= Requirements =
+
+  * [http://getfirefox.com Firefox] with [http://getfirebug.com/ Firebug] and [http://www.firephp.org/ FirePHP]
+  * NLog (included in the archive)
+  * You should already know how NLog works (be able to log to the console or a file)
+
+= Configuration =
+
+First of all you have to deploy the NLog.Targets.FireDotNet.dll together with the NLog.dll file.
+
+To be able to debug to the Firebug console you have to make a few small adjustments to your NLog configuration: (NLog.config)
+  # you should add an extensions section in the nlog section like this:
+{{{
+<extensions>
+  <add assembly="NLog.Targets.FireDotNet"/>
+</extensions> 
+}}}
+  # you should add a target of the type FireDotNet:
+{{{
+<target name="a1" type="FireDotNet" />
+}}}
+  # and add a logger that writes to the target e.g.
+{{{
+<logger name="*" minLevel="Trace" appendTo="a1"/>
+}}}
+
+your complete configuration file might look like this:
+{{{
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <extensions>
+    <add assembly="NLog.Targets.FireDotNet"/>
+  </extensions>
+  <targets>
+    <target name="firebugconsole" type="FireDotNet" />
+  </targets>
+  <rules>
+    <logger name="*" minLevel="DEBUG" appendTo="firebugconsole"/>
+  </rules>
+</nlog>
+}}}
