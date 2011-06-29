@@ -15,7 +15,7 @@ namespace NLog.Targets.FireDotNet
 {
 
     [Target("FireDotNet")]
-    public sealed class FireDotNetTarget : Target
+    public sealed class FireDotNetTarget : TargetWithLayout
     {
         private static readonly int MAX_HEADER_LENGTH = 5000;
 
@@ -45,6 +45,13 @@ namespace NLog.Targets.FireDotNet
             {
                 HttpContext.Current.Items["FireDotNetCounter"] = value;
             }
+        }
+
+        public FireDotNetTarget()
+            : base()
+        {
+            // realy ugly hack to get the stacktrace information
+            Layout = "${callsite:fileName=true}";
         }
 
         protected override void Write(LogEventInfo logEvent)
