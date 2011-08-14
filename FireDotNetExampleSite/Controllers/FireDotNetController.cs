@@ -45,7 +45,20 @@ namespace FireDotNetExampleSite.Controllers
                 logger.DebugException("test", e);
             }
 
-            logger.Debug(Enumerable.Repeat("very long test ", 700).Aggregate((sum, s) => sum + s).ToString());
+            if ("Firefox".Equals(Request.Browser.Browser))
+            {
+                logger.Debug(Enumerable.Repeat("very long test ", 700).Aggregate((sum, s) => sum + s).ToString());
+            }
+
+            if (Request.Headers.AllKeys.Contains("X-FirePHP-Version"))
+            {
+                logger.Debug("X-FirePHP-Version header found");
+            }
+
+            if (Request.UserAgent.Contains("FirePHP"))
+            {
+                logger.Debug("Modified useragent found");
+            }
 
             logger.Debug("Last test");
 
