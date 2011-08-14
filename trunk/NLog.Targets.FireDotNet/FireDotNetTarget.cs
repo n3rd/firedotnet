@@ -47,6 +47,16 @@ namespace NLog.Targets.FireDotNet
             }
         }
 
+        private bool IsConsoleEnabled
+        {
+            get 
+            {
+                HttpRequest request = HttpContext.Current.Request;
+
+                return request.Headers.AllKeys.Contains("X-FirePHP-Version") || request.UserAgent.Contains("FirePHP");
+            }
+        }
+
         public FireDotNetTarget()
             : base()
         {
@@ -58,7 +68,11 @@ namespace NLog.Targets.FireDotNet
         {
             HttpResponse response = HttpContext.Current.Response;
 
-            if (MessageCount < 2)
+            /*if (MessageCount < 2 && !IsConsoleEnabled)
+            {
+                return;
+            }
+            else*/ if (MessageCount < 2)
             {
                 response.AppendHeader("X-Wf-Protocol-1", "http://meta.wildfirehq.org/Protocol/JsonStream/0.2");
                 response.AppendHeader("X-Wf-1-Plugin-1", "http://meta.firephp.org/Wildfire/Plugin/FirePHP/Library-FirePHPCore/0.3");
