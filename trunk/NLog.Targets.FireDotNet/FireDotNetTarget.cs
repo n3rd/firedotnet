@@ -68,11 +68,11 @@ namespace NLog.Targets.FireDotNet
         {
             HttpResponse response = HttpContext.Current.Response;
 
-            /*if (MessageCount < 2 && !IsConsoleEnabled)
+            if (MessageCount < 2 && !IsConsoleEnabled)
             {
                 return;
             }
-            else*/ if (MessageCount < 2)
+            else if (MessageCount < 2)
             {
                 response.AppendHeader("X-Wf-Protocol-1", "http://meta.wildfirehq.org/Protocol/JsonStream/0.2");
                 response.AppendHeader("X-Wf-1-Plugin-1", "http://meta.firephp.org/Wildfire/Plugin/FirePHP/Library-FirePHPCore/0.3");
