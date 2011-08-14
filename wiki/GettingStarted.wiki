@@ -3,7 +3,7 @@
 
 = Requirements =
 
-  * [http://getfirefox.com Firefox] with [http://getfirebug.com/ Firebug] and [http://www.firephp.org/ FirePHP]
+  * [http://getfirefox.com Firefox] with [http://getfirebug.com/ Firebug] and [http://www.firephp.org/ FirePHP] or [www.google.com/chrome/ Chrome] with [https://chrome.google.com/webstore/detail/cjbeipenlpoeifpkjhgakejmikdhlhcj webug] 
   * [http://nlog-project.org/ NLog] (included in the archive)
   * You should already know how NLog works (be able to log to the console or a file)
 
