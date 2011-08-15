@@ -42,9 +42,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserSupport.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="FireDotNetTarget.cs" />
     <Compile Include="Meta.cs" />

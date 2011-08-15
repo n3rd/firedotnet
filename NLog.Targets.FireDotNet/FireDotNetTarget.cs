@@ -17,8 +17,6 @@ namespace NLog.Targets.FireDotNet
     [Target("FireDotNet")]
     public sealed class FireDotNetTarget : TargetWithLayout
     {
-        private static readonly int MAX_HEADER_LENGTH = 5000;
-
         private static JavaScriptSerializer JSSerializer = new JavaScriptSerializer();
 
         private static Dictionary<FireDotNet.LogLevel, NLog.LogLevel[]> LevelMapper = new Dictionary<FireDotNet.LogLevel, NLog.LogLevel[]>() 
@@ -34,27 +32,39 @@ namespace NLog.Targets.FireDotNet
         {
             get
             {
-                if (!HttpContext.Current.Items.Contains("FireDotNetCounter"))
+                if (!HttpContext.Current.Items.Contains("FireDotNet_MessageCount"))
                 {
                     MessageCount = 1;
                 }
 
-                return (int)HttpContext.Current.Items["FireDotNetCounter"];
+                return (int)HttpContext.Current.Items["FireDotNet_MessageCount"];
             }
             set
             {
-                HttpContext.Current.Items["FireDotNetCounter"] = value;
+                HttpContext.Current.Items["FireDotNet_MessageCount"] = value;
             }
         }
 
-        private bool IsConsoleEnabled
+        private int TotalHeaderSize
         {
-            get 
+            get
             {
-                HttpRequest request = HttpContext.Current.Request;
+                if (!HttpContext.Current.Items.Contains("FireDotNet_TotalHeaderSize"))
+                {
+                    TotalHeaderSize = 0;
+                }
 
-                return request.Headers.AllKeys.Contains("X-FirePHP-Version") || request.UserAgent.Contains("FirePHP");
+                return (int)HttpContext.Current.Items["FireDotNet_TotalHeaderSize"];
             }
+            set
+            {
+                HttpContext.Current.Items["FireDotNet_TotalHeaderSize"] = value;
+            }
+        }
+
+        private bool IsConsoleEnabled(HttpRequestBase request)
+        {
+            return request.Headers.AllKeys.Contains("X-FirePHP-Version") || request.UserAgent.Contains("FirePHP");
         }
 
         public FireDotNetTarget()
@@ -66,9 +76,10 @@ namespace NLog.Targets.FireDotNet
 
         protected override void Write(LogEventInfo logEvent)
         {
-            HttpResponse response = HttpContext.Current.Response;
+            HttpContextBase httpContext = new HttpContextWrapper(HttpContext.Current);
+            HttpResponseBase response = httpContext.Response;
 
-            if (MessageCount < 2 && !IsConsoleEnabled)
+            if (MessageCount < 2 && !IsConsoleEnabled(httpContext.Request))
             {
                 return;
             }
@@ -104,10 +115,19 @@ namespace NLog.Targets.FireDotNet
                 body
             });
 
-            int pos = 0;
+            
+            int byteCount = Encoding.UTF8.GetByteCount(json);
+            TotalHeaderSize += byteCount;
+            if (TotalHeaderSize >= BrowserSupport.GetMaxHeaderSize(httpContext.Request.Browser))
+            {
+                throw new Exception("Logging disabled due to header size limitations");
+            }
+
+            int pos = 0,
+                maxHeaderLength = BrowserSupport.GetMaxHeaderLength(httpContext.Request.Browser);
             while (pos < json.Length)
             {
-                string data = (pos == 0 ? Encoding.UTF8.GetByteCount(json).ToString() : "") + "|" + new String(json.Skip(pos).Take(MAX_HEADER_LENGTH).ToArray()) + "|" + ((pos += MAX_HEADER_LENGTH) < json.Length ? @"\" : "");
+                string data = (pos == 0 ? byteCount.ToString() : "") + "|" + new String(json.Skip(pos).Take(maxHeaderLength).ToArray()) + "|" + ((pos += maxHeaderLength) < json.Length ? @"\" : "");
                 response.AppendHeader("X-Wf-1-1-1-" + (MessageCount++), data);
             }
         }

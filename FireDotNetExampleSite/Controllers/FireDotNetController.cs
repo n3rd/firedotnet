@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NLog;
+using System.Text;
 
 namespace FireDotNetExampleSite.Controllers
 {
@@ -35,19 +36,14 @@ namespace FireDotNetExampleSite.Controllers
                         throw new Exception("inner excpetion", e);
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw new Exception("test exception", e);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 logger.DebugException("test", e);
-            }
-
-            if ("Firefox".Equals(Request.Browser.Browser))
-            {
-                logger.Debug(Enumerable.Repeat("very long test ", 700).Aggregate((sum, s) => sum + s).ToString());
             }
 
             if (Request.Headers.AllKeys.Contains("X-FirePHP-Version"))
@@ -59,6 +55,15 @@ namespace FireDotNetExampleSite.Controllers
             {
                 logger.Debug("Modified useragent found");
             }
+
+            string longMessage = "48K test message {0} ";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0, length = longMessage.Length; i < 48 * 1024; i += length)
+            {
+                sb.Append(longMessage);
+            }
+            logger.Debug(String.Format(sb.ToString(), 1)); // write a 48K message
+            logger.Debug(String.Format(sb.ToString(), 2)); // write another 48K message
 
             logger.Debug("Last test");
 
