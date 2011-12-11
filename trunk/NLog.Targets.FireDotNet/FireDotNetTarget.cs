@@ -62,9 +62,16 @@ namespace NLog.Targets.FireDotNet
             }
         }
 
+        public bool AllowRemote { get; set; }
+
         private bool IsConsoleEnabled(HttpRequestBase request)
         {
             return request.Headers.AllKeys.Contains("X-FirePHP-Version") || request.UserAgent.Contains("FirePHP");
+        }
+
+        private bool IsEnabled(HttpRequestBase request)
+        {
+            return IsConsoleEnabled(request) && (AllowRemote || request.IsLocal);
         }
 
         public FireDotNetTarget()
@@ -72,6 +79,7 @@ namespace NLog.Targets.FireDotNet
         {
             // realy ugly hack to get the stacktrace information
             Layout = "${callsite:fileName=true}";
+            AllowRemote = false;
         }
 
         protected override void Write(LogEventInfo logEvent)
@@ -79,7 +87,7 @@ namespace NLog.Targets.FireDotNet
             HttpContextBase httpContext = new HttpContextWrapper(HttpContext.Current);
             HttpResponseBase response = httpContext.Response;
 
-            if (MessageCount < 2 && !IsConsoleEnabled(httpContext.Request))
+            if (MessageCount < 2 && !IsEnabled(httpContext.Request))
             {
                 return;
             }

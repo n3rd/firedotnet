@@ -5,7 +5,7 @@
         <add assembly="NLog.Targets.FireDotNet"/>
     </extensions>
     <targets>
-        <target name="firebugconsole" type="FireDotNet" />
+        <target name="firebugconsole" type="FireDotNet" allowRemote="false" />
     </targets>
     <rules>
         <logger name="*" minLevel="DEBUG" appendTo="firebugconsole"/>
