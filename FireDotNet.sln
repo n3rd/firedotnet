@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.FireDotNet", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireDotNetExampleSite", "FireDotNetExampleSite\FireDotNetExampleSite.csproj", "{1731F826-C58E-40EE-8DB3-486A6B96BE29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.FireDotNet-net35", "NLog.Targets.FireDotNet\NLog.Targets.FireDotNet-net35.csproj", "{A432B869-0A3F-47A9-8970-849A45BEC4C8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +19,6 @@ Global
 		{1731F826-C58E-40EE-8DB3-486A6B96BE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1731F826-C58E-40EE-8DB3-486A6B96BE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1731F826-C58E-40EE-8DB3-486A6B96BE29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A432B869-0A3F-47A9-8970-849A45BEC4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A432B869-0A3F-47A9-8970-849A45BEC4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A432B869-0A3F-47A9-8970-849A45BEC4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A432B869-0A3F-47A9-8970-849A45BEC4C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
