@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.FireDotNet", "NLog.Targets.FireDotNet\NLog.Targets.FireDotNet.csproj", "{61DECC86-CCA6-4F74-8A01-8DBD2E8AA7E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireDotNetExampleSite", "FireDotNetExampleSite\FireDotNetExampleSite.csproj", "{1731F826-C58E-40EE-8DB3-486A6B96BE29}"
