@@ -6,8 +6,8 @@
     <title>NLog target for Firebug / Webug</title>
     <authors>Boaz den Besten</authors>
     <owners>Boaz den Besten</owners>
-    <licenseUrl>http://firedotnet.googlecode.com/svn/trunk/LICENSE</licenseUrl>
-    <projectUrl>http://code.google.com/p/firedotnet/</projectUrl>
+    <licenseUrl>https://github.com/n3rd/firedotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/n3rd/firedotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Firedotnet is written in C# and helps you debugging your ASP.NET (MVC) Web Application using the FirePHP extension for Firebug and NLog.</description>
     <dependencies>
