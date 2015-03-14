@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>NLog.Targets.FireDotNet</id>
-    <version>0.2</version>
+    <version>0.3</version>
     <title>NLog target for Firebug / Webug</title>
     <authors>Boaz den Besten</authors>
     <owners>Boaz den Besten</owners>
