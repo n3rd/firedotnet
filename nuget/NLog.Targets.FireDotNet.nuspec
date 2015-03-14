@@ -16,7 +16,8 @@
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\bin\Release\NLog.Targets.FireDotNet.dll" target="lib\net40" />
+    <file src="..\bin\Release\net45\NLog.Targets.FireDotNet.dll" target="lib\net45" />
+    <file src="..\bin\Release\net40\NLog.Targets.FireDotNet.dll" target="lib\net40" />
     <file src="..\bin\Release\net35\NLog.Targets.FireDotNet.dll" target="lib\net35" />
     <file src="content\NLog.config.transform" target="content\NLog.config.transform" />
     <file src="content\NLog.FireDotNet.config.transform" target="content\NLog.FireDotNet.config.transform" />
