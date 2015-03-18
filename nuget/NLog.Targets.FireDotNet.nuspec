@@ -19,7 +19,8 @@
     <file src="..\bin\Release\net45\NLog.Targets.FireDotNet.dll" target="lib\net45" />
     <file src="..\bin\Release\net40\NLog.Targets.FireDotNet.dll" target="lib\net40" />
     <file src="..\bin\Release\net35\NLog.Targets.FireDotNet.dll" target="lib\net35" />
-    <file src="content\NLog.config.transform" target="content\NLog.config.transform" />
-    <file src="content\NLog.FireDotNet.config.transform" target="content\NLog.FireDotNet.config.transform" />
+    <file src="content\NLog.config.install.xdt" target="content\NLog.config.install.xdt" />
+	<file src="content\NLog.config.uninstall.xdt" target="content\NLog.config.uninstall.xdt" />
+    <file src="content\NLog.FireDotNet.config.install.xdt" target="content\NLog.FireDotNet.config.install.xdt" />
   </files>
 </package>

@@ -1,0 +1,3 @@
+<nlog xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <include file="NLog.FireDotNet.config" xdt:Transform="Remove" xdt:Locator="Match(file)" />
+</nlog>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <extensions xdt:Transform="InsertIfMissing">
+        <add assembly="NLog.Targets.FireDotNet" />
+    </extensions>
+    <targets xdt:Transform="InsertIfMissing">
+        <target name="firebugconsole" type="FireDotNet" allowRemote="false" />
+    </targets>
+    <rules xdt:Transform="InsertIfMissing">
+        <logger name="*" minLevel="DEBUG" appendTo="firebugconsole" />
+    </rules>
+</nlog>
