@@ -149,4 +149,17 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BuildAllConfigs">
+    <MSBuild Projects="NLog.Targets.FireDotNet.csproj" Targets="Rebuild" Properties="Configuration=Release-net35"
+                     StopOnFirstFailure="true">
+    </MSBuild>
+
+    <MSBuild Projects="NLog.Targets.FireDotNet.csproj" Targets="Rebuild" Properties="Configuration=Release-net40"
+                     StopOnFirstFailure="true">
+    </MSBuild>
+
+    <MSBuild Projects="NLog.Targets.FireDotNet.csproj" Targets="Rebuild" Properties="Configuration=Release-net45"
+                     StopOnFirstFailure="true">
+    </MSBuild>
+  </Target>
 </Project>
